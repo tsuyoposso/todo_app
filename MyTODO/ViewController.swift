@@ -38,6 +38,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             todoKobetsuNoNakami = UserDefaults.standard.object(forKey: "TodoList") as! [String]
         }
     }
+    
+    //セルの編集許可
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    //スワイプしたセルを削除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            todoKobetsuNoNakami.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+        }
+    }
 
 
 }
