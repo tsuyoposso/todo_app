@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //表示するセル数を決める(UITableView, numberOfInSectionの追加)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //戻り値(表示するcell数)
-        return todoKobetsuNoNakami.count
+        return todos.count
     }
     
     //表示するセルの中身を作成する(UITableView, cellForRowAtの追加)
@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //変数の作成 -------------------------------------------------------------------------------------↓小文字！
         let TodoCell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath)
         //変数の中身を代入
-        TodoCell.textLabel!.text = todoKobetsuNoNakami[indexPath.row]
+        TodoCell.textLabel!.text = todos[indexPath.row]
         //戻り値
         return TodoCell
     }
@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //追加画面で入力した情報の取得
         //TodoListに情報があったらそれを受け渡す処理
         if UserDefaults.standard.object(forKey: "TodoList") != nil {
-            todoKobetsuNoNakami = UserDefaults.standard.object(forKey: "TodoList") as! [String]
+            todos = UserDefaults.standard.object(forKey: "TodoList") as! [String]
         }
     }
     
@@ -48,7 +48,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //スワイプしたセルを削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            todoKobetsuNoNakami.remove(at: indexPath.row)
+            todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
         }
     }

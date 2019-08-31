@@ -8,8 +8,8 @@
 
 import UIKit
 
-//変数の設置
-var todoKobetsuNoNakami = [String]()
+//追加したTODOを格納する配列
+var todos = [String]()
 
 class AddController: UIViewController {
 
@@ -19,13 +19,13 @@ class AddController: UIViewController {
     //追加ボタンのアクション
     @IBAction func TodoAddButton(_ sender: Any) {
         //テキストフィールドの入力値を配列に追加
-        todoKobetsuNoNakami.append(TodoTextField.text!)
+        todos.append(TodoTextField.text!)
         //テキストフィールドをクリア
         TodoTextField.text = ""
         //変数の中身をUDに追加する
         //UD(UserDefaults) -> データベースを使うまでもないものを格納できる
         //forKey: -> 格納先の名前
-        UserDefaults.standard.set(todoKobetsuNoNakami, forKey: "TodoList")
+        UserDefaults.standard.set(todos, forKey: "TodoList")
     }
     
     override func viewDidLoad() {
